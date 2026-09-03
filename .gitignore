@@ -39,3 +39,6 @@ build/
 .DS_Store
 release
 package-input
+.idea
+packaging
+.mvn
