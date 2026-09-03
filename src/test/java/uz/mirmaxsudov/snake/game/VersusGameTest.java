@@ -71,6 +71,21 @@ class VersusGameTest {
     }
 
     @Test
+    void appliesTheLatestDirectionRequestedWhilePaused() {
+        VersusGame game = new VersusGame(20, 12, new Random(4), false, false,
+                GameMode.TWO_PLAYER, AiDifficulty.STRATEGIC);
+        Position firstHead = game.playerOne().head();
+
+        game.togglePause();
+        game.requestPlayerOneDirection(Direction.UP);
+        game.requestPlayerOneDirection(Direction.DOWN);
+        game.togglePause();
+        game.tick();
+
+        assertEquals(firstHead.translate(Direction.DOWN), game.playerOne().head());
+    }
+
+    @Test
     void strategicAiTakesTheSafeMoveTowardFood() {
         Snake ai = snake(List.of(new Position(8, 5), new Position(9, 5),
                 new Position(10, 5), new Position(11, 5)), Direction.LEFT);

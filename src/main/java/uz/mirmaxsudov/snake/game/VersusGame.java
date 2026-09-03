@@ -75,10 +75,12 @@ public final class VersusGame {
     }
 
     public void requestPlayerOneDirection(Direction requested) {
-        if (!playerOneDirectionQueued && validTurn(playerOne, requested)) {
-            playerOneDirection = requested;
+        if (!validTurn(playerOne, requested)) return;
+        if (status == MatchStatus.RUNNING) {
+            if (playerOneDirectionQueued) return;
             playerOneDirectionQueued = true;
         }
+        playerOneDirection = requested;
     }
 
     public void requestPlayerTwoDirection(Direction requested) {
@@ -87,10 +89,12 @@ public final class VersusGame {
     }
 
     private void queuePlayerTwoDirection(Direction requested) {
-        if (!playerTwoDirectionQueued && validTurn(playerTwo, requested)) {
-            playerTwoDirection = requested;
+        if (!validTurn(playerTwo, requested)) return;
+        if (status == MatchStatus.RUNNING) {
+            if (playerTwoDirectionQueued) return;
             playerTwoDirectionQueued = true;
         }
+        playerTwoDirection = requested;
     }
 
     private boolean validTurn(Snake snake, Direction requested) {
