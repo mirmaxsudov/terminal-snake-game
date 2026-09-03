@@ -42,6 +42,31 @@ mvn clean package
 java -jar target/java-snake.jar
 ```
 
+## Native releases
+
+GitHub Actions can build self-contained installers for friends who do not have
+Java installed. Open **Actions → Build native packages → Run workflow** to
+produce downloadable workflow artifacts:
+
+- Windows x64 `.exe` installer
+- macOS Apple Silicon `.dmg`
+- macOS Intel `.dmg`
+- Linux x64 `.deb` and `.rpm` packages
+
+To publish those files as a GitHub Release, create and push a version tag:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The tagged workflow creates the release automatically and attaches every
+platform package. Builds run natively on each operating system because
+`jpackage` does not cross-compile. The macOS package is ad-hoc signed rather
+than Apple-notarized, so first-time users may need to right-click the launcher
+and select **Open**. Public distribution without that warning requires an Apple
+Developer certificate and notarization.
+
 The Maven Shade plugin produces `target/java-snake.jar`, a self-contained
 executable JAR including JLine and its Java 21-compatible native terminal
 provider.

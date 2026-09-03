@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Java Snake
+Comment=A modern Snake game for the terminal
+Exec=/opt/java-snake/bin/java-snake
+Terminal=true
+Type=Application
+Categories=Game;
