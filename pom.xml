@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <snake.finalName>java-snake</snake.finalName>
     </properties>
 
     <dependencies>
@@ -33,7 +34,7 @@
     </dependencies>
 
     <build>
-        <finalName>java-snake</finalName>
+        <finalName>${snake.finalName}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

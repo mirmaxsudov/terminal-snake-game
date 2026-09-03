@@ -1,19 +1,21 @@
 package uz.mirmaxsudov.snake.ui;
 
-import uz.mirmaxsudov.snake.game.Difficulty;
-import uz.mirmaxsudov.snake.game.BoardSize;
 import uz.mirmaxsudov.snake.terminal.Ansi;
+import uz.mirmaxsudov.snake.game.GameMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class MainMenu {
-    public static final int ITEM_COUNT = 8;
+    public static final int ITEM_COUNT = 7;
     private static final int WIDTH = 44;
 
-    public List<String> render(int selected, Difficulty difficulty, BoardSize boardSize,
-                               SnakeStyle snakeStyle, Theme theme, int highScore,
-                               boolean wrapWalls) {
+    public List<String> render(int selected, Theme theme, int highScore, boolean replayAvailable) {
+        return render(selected, theme, highScore, replayAvailable, GameMode.SOLO);
+    }
+
+    public List<String> render(int selected, Theme theme, int highScore, boolean replayAvailable,
+                               GameMode gameMode) {
         List<String> lines = new ArrayList<>();
         lines.add(UiSupport.top(theme, WIDTH));
         lines.add(UiSupport.line(theme, UiSupport.centered(
@@ -23,14 +25,8 @@ public final class MainMenu {
         lines.add(UiSupport.separator(theme, WIDTH));
         lines.add(UiSupport.line(theme, "", WIDTH));
         String[] items = {
-                "Start Game",
-                "Difficulty     " + difficulty.label(),
-                "Board Size     " + boardSize.label(),
-                "Snake Style    " + snakeStyle.label(),
-                "Theme          " + theme.name(),
-                "Wall Wrap      " + (wrapWalls ? "On" : "Off"),
-                "Help",
-                "Exit"
+                "Start Game  [" + gameMode.label() + "]", "Settings", "Leaderboard", "Achievements",
+                replayAvailable ? "Replay Last Game" : "Replay Last Game  (empty)", "Help", "Exit"
         };
         for (int i = 0; i < items.length; i++) {
             String marker = i == selected ? "  › " : "    ";

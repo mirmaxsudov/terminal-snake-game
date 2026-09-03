@@ -16,10 +16,8 @@ public final class HelpScreen {
         lines.add(UiSupport.line(theme, UiSupport.centered(
                 theme.titleColor() + Ansi.BOLD + "HOW TO PLAY" + Ansi.RESET, WIDTH), WIDTH));
         lines.add(UiSupport.separator(theme, WIDTH));
-        lines.add(row(theme, "W / ↑", "Move up"));
-        lines.add(row(theme, "S / ↓", "Move down"));
-        lines.add(row(theme, "A / ←", "Move left"));
-        lines.add(row(theme, "D / →", "Move right"));
+        lines.add(row(theme, "WASD", "Solo / Player 1 movement"));
+        lines.add(row(theme, "ARROWS", "Solo / Player 2 movement"));
         lines.add(row(theme, "P", "Pause or resume"));
         lines.add(row(theme, "M / Esc", "Return to menu"));
         lines.add(row(theme, "Q", "Quit (asks for confirmation)"));
@@ -29,9 +27,13 @@ public final class HelpScreen {
         lines.add(UiSupport.line(theme, "   and your own body. Reversals are ignored.", WIDTH));
         lines.add(UiSupport.line(theme, "   Eat quickly for x3 or x2 score multipliers.", WIDTH));
         lines.add(UiSupport.line(theme, "   Food expires after 9s. Stars give 30 points.", WIDTH));
-        lines.add(UiSupport.line(theme, "   Wall Wrap can be enabled in the main menu.", WIDTH));
+        lines.add(UiSupport.line(theme, "   Wall Wrap can be enabled in Settings.", WIDTH));
         lines.add(UiSupport.line(theme, "   Board size, snake style, and accessible", WIDTH));
         lines.add(UiSupport.line(theme, "   color themes are also available there.", WIDTH));
+        lines.add(UiSupport.line(theme, "   Arena modes add enemy AI or local Player 2.", WIDTH));
+        lines.add(UiSupport.line(theme, "   AI tiers: Simple, Strategic, and Pathfinder.", WIDTH));
+        lines.add(UiSupport.line(theme, "   Food: ● normal ★ bonus » speed ◌ slow", WIDTH));
+        lines.add(UiSupport.line(theme, "         ▼ shrink × poison; power-ups: S 2× P M", WIDTH));
         lines.add(UiSupport.separator(theme, WIDTH));
         lines.add(UiSupport.line(theme, UiSupport.centered(
                 theme.accentColor() + "Esc / Enter  Back" + Ansi.RESET, WIDTH), WIDTH));

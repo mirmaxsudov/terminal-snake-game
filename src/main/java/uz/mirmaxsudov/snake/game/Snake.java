@@ -60,4 +60,9 @@ public final class Snake {
         segments.addFirst(Objects.requireNonNull(nextHead));
         if (!grow) segments.removeLast();
     }
+
+    void shrink(int amount) {
+        int removable = Math.min(Math.max(0, amount), Math.max(0, segments.size() - 2));
+        for (int i = 0; i < removable; i++) segments.removeLast();
+    }
 }

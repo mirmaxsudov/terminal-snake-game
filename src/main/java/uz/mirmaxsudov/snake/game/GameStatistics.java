@@ -4,6 +4,8 @@ public record GameStatistics(
         int foodEaten,
         int maximumLength,
         long playTimeMillis,
-        double averagePointsPerFood
+        double averagePointsPerFood,
+        int level,
+        int maximumCombo
 ) {
 }

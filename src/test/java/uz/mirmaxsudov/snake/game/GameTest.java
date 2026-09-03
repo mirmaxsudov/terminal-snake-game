@@ -139,7 +139,7 @@ class GameTest {
         Random bonusRandom = new Random() {
             @Override
             public int nextInt(int bound) {
-                return 0;
+                return bound == 100 ? 55 : 0;
             }
         };
 

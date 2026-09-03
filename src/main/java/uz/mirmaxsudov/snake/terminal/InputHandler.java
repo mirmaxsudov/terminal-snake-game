@@ -17,6 +17,10 @@ public final class InputHandler {
         return decode(value);
     }
 
+    public int readCharacter(long timeoutMillis) throws IOException {
+        return reader.read(Math.max(1, timeoutMillis));
+    }
+
     private InputEvent decode(int value) throws IOException {
         return switch (value) {
             case 3, 'q', 'Q' -> InputEvent.QUIT;
@@ -39,10 +43,10 @@ public final class InputHandler {
         int first = reader.read(12);
         if (first != '[' && first != 'O') return InputEvent.BACK;
         return switch (reader.read(12)) {
-            case 'A' -> InputEvent.UP;
-            case 'B' -> InputEvent.DOWN;
-            case 'C' -> InputEvent.RIGHT;
-            case 'D' -> InputEvent.LEFT;
+            case 'A' -> InputEvent.PLAYER_TWO_UP;
+            case 'B' -> InputEvent.PLAYER_TWO_DOWN;
+            case 'C' -> InputEvent.PLAYER_TWO_RIGHT;
+            case 'D' -> InputEvent.PLAYER_TWO_LEFT;
             default -> InputEvent.BACK;
         };
     }
