@@ -64,8 +64,9 @@ java -Dsnake.debug=true -jar target/java-snake.jar
 | `D` or `→` | Move right |
 | `P` | Pause or resume |
 | `R` | Restart after game over |
-| `M` | Return to the main menu after game over |
-| `Q` or `Ctrl+C` | Quit |
+| `M` or `Esc` | Request to return to the main menu |
+| `Q` or `Ctrl+C` | Request to quit |
+| `Y`, `N`, or `Esc` | Answer a confirmation prompt |
 
 The snake cannot reverse directly into itself. Only one turn is accepted per
 movement tick, so very fast key sequences cannot bypass that rule.
@@ -74,19 +75,28 @@ movement tick, so very fast key sequences cannot bypass that rule.
 
 - Fixed-timestep movement at Easy (150 ms), Normal (100 ms), or Hard (65 ms)
 - Gradual, bounded speed increase as the score grows
-- Default, Matrix, Ocean, and Monochrome themes
+- Default, Matrix, Ocean, Monochrome, High Contrast, and Color Safe themes
+- Small (20 × 12), Medium (28 × 16), and Large (40 × 20) board sizes
+- Blocks, Circles, ASCII, and Diamonds snake styles
 - Reliable food placement on unoccupied cells
 - Wall and self-collision detection
 - Pause and game-over overlays
+- 3-2-1-GO countdown before every game and restart
+- Freshness multipliers: collect food quickly for x3 or x2 points
+- Nine-second food expiration with automatic safe respawning
+- 15% chance of bonus star food worth 30 base points
+- Optional wall-wrap mode, configurable from the main menu
+- End-of-game statistics for food eaten, maximum length, active play time, and average points
+- Confirmation screens before quitting or abandoning a game
 - Locally persisted high score
-- Responsive board up to 40 × 20 logical cells
+- Selectable board sizes up to 40 × 20 logical cells
 - Live terminal-resize detection and automatic recovery
 - Low-output, line-diff terminal rendering
 - Defensive raw-mode, cursor, ANSI, wrapping, and alternate-screen cleanup
 
 Each logical game cell uses two terminal columns so the board remains visually
-proportional. Within the supported minimum terminal size, the board adapts up
-to the configured 40 × 20 maximum.
+proportional. Larger board choices may ask you to enlarge the terminal before
+play starts; pressing `M` or `Esc` returns safely to the menu.
 
 ## Architecture
 
@@ -138,6 +148,7 @@ silently. The game remains playable when persistence is unavailable.
 mvn test
 ```
 
-The suite covers movement, growth, scoring, wall collision, self collision,
-reverse-direction rejection, rapid queued turns, and safe food spawning.
+The suite covers movement, growth, scoring, statistics, board settings, snake
+styles, accessible theme cycling, wall collision and wrapping, direction
+validation, confirmation UI, food expiry, bonus food, and safe food spawning.
 # terminal-snake-game
