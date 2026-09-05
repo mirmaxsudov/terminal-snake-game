@@ -58,6 +58,21 @@ class GameTest {
     }
 
     @Test
+    void appliesTheLatestDirectionRequestedWhilePaused() {
+        Game game = new Game(10, 8, new Random(1));
+        Position initialHead = game.snake().head();
+
+        game.togglePause();
+        game.requestDirection(Direction.UP);
+        game.requestDirection(Direction.DOWN);
+        game.togglePause();
+        game.tick();
+
+        assertEquals(Direction.DOWN, game.snake().direction());
+        assertEquals(initialHead.translate(Direction.DOWN), game.snake().head());
+    }
+
+    @Test
     void eatingGrowsSnakeAndIncreasesScore() {
         Snake snake = Snake.of(List.of(
                 new Position(4, 3), new Position(3, 3), new Position(2, 3), new Position(1, 3)),

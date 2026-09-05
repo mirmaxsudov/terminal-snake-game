@@ -85,11 +85,12 @@ public final class Game {
 
     public void requestDirection(Direction requested) {
         Objects.requireNonNull(requested);
-        if (!directionQueuedThisTick && requested != snake.direction()
-                && !requested.isOpposite(snake.direction())) {
-            queuedDirection = requested;
+        if (requested == snake.direction() || requested.isOpposite(snake.direction())) return;
+        if (status == GameStatus.RUNNING) {
+            if (directionQueuedThisTick) return;
             directionQueuedThisTick = true;
         }
+        queuedDirection = requested;
     }
 
     public void togglePause() {
